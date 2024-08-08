@@ -1,21 +1,27 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  questionNumber: 0,
+  questions: [],
+  correctAnswersCount: 0,
 };
 
 const questionnaireSlice = createSlice({
-  name: 'questionnaire',
+  name: "questionnaire",
   initialState,
   reducers: {
-    nextQuestion: (state) => {
-      state.questionNumber += 1;
+    updateUserAnswer: (state, action) => {
+      const { questionIndex, updatedQuestion } = action.payload;
+      state.questions[questionIndex] = updatedQuestion;
     },
-    resetQuestionnaire: (state) => {
-      state.questionNumber = 0;
+    incrementCorrectAnswers: (state) => {
+      state.correctAnswersCount += 1;
+    },
+    resetState: (state) => {
+      state.questions = initialState.questions;
+      state.correctAnswersCount = initialState.correctAnswersCount;
     },
   },
 });
 
-export const { nextQuestion, resetQuestionnaire } = questionnaireSlice.actions;
+export const { setQuestions, updateUserAnswer, incrementCorrectAnswers, resetState } = questionnaireSlice.actions;
 export default questionnaireSlice.reducer;

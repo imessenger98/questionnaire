@@ -1,11 +1,18 @@
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import { useDispatch } from "react-redux";
+import { updateUserAnswer, incrementCorrectAnswers, resetState } from "../../redux/questionnaire/questionnaireSlice";
 import Styles from "./QuestionBlock.module.css";
 
-const QuestionBlockPage = ({ questions, questionNumber }) => {
+const QuestionBlockPage = ({ questions, questionNumber, isTimeOut = false }) => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [isCorrect, setIsCorrect] = useState(null);
+  const dispatch = useDispatch();
   const currentQuestion = questions[questionNumber];
+
+  useEffect(() => {
+    dispatch(resetState());
+  }, [dispatch]);
 
   // Reset state when questionNumber changes
   useEffect(() => {
@@ -17,6 +24,19 @@ const QuestionBlockPage = ({ questions, questionNumber }) => {
     const correct = option === currentQuestion.correctAnswer;
     setSelectedOption(option);
     setIsCorrect(correct);
+    // Update the question with the user's selected answer
+    dispatch(
+      updateUserAnswer({
+        questionIndex: questionNumber,
+        updatedQuestion: {
+          ...currentQuestion,
+          userAnswer: option,
+        },
+      })
+    );
+    if (correct) {
+      dispatch(incrementCorrectAnswers());
+    }
   };
 
   const getButtonClass = (option) => {
@@ -26,7 +46,7 @@ const QuestionBlockPage = ({ questions, questionNumber }) => {
     if (selectedOption !== null && option === currentQuestion.correctAnswer) {
       return Styles.correct; // Highlight correct option if the user was wrong
     }
-    return "";
+    if (isTimeOut && option === currentQuestion.correctAnswer) return Styles.correct; // Highlight correct option
   };
 
   return (
@@ -59,6 +79,7 @@ QuestionBlockPage.propTypes = {
     })
   ).isRequired,
   questionNumber: PropTypes.number.isRequired,
+  isTimeOut: PropTypes.bool,
 };
 
 export default QuestionBlockPage;
