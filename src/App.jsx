@@ -1,13 +1,6 @@
-import { BrowserRouter as Router } from "react-router-dom";
-
-import AppRoutes from "./Routes.jsx";
-
+import Layout from "./Pages/Layout";
 const App = () => {
-  return (
-    <Router>
-      <AppRoutes />
-    </Router>
-  );
+  return <Layout />;
 };
 
 export default App;

@@ -8,12 +8,18 @@ importers:
 
   .:
     dependencies:
+      framer-motion:
+        specifier: ^11.3.22
+        version: 11.3.22(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
         specifier: ^18.3.1
         version: 18.3.1
       react-dom:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
+      react-icons:
+        specifier: ^5.2.1
+        version: 5.2.1(react@18.3.1)
       react-router-dom:
         specifier: ^6.26.0
         version: 6.26.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -656,6 +662,20 @@ packages:
   for-each@0.3.3:
     resolution: {integrity: sha512-jqYfLp7mo9vIyQf8ykW2v7A+2N4QjeCeI5+Dz9XraiO1ign81wjiH7Fb9vSOWvQfNtmSa4H2RoQTrrXivdUZmw==}
 
+  framer-motion@11.3.22:
+    resolution: {integrity: sha512-NS9TnPOJhkUrKKe7sl9zAMmQlzm70bwzJ6/gs/DkYP3kCqc0wO350CEqiEcBuVjhyqVNnDf33SkenzByi8x8Gg==}
+    peerDependencies:
+      '@emotion/is-prop-valid': '*'
+      react: ^18.0.0
+      react-dom: ^18.0.0
+    peerDependenciesMeta:
+      '@emotion/is-prop-valid':
+        optional: true
+      react:
+        optional: true
+      react-dom:
+        optional: true
+
   fs.realpath@1.0.0:
     resolution: {integrity: sha512-OO0pH2lK6a0hZnAdau5ItzHPI6pUlvI7jMVnxUQRtw4owF2wk8lOSabtGDCTP4Ggrg2MbGnWO9X8K1t4+fGMDw==}
 
@@ -1003,6 +1023,11 @@ packages:
     peerDependencies:
       react: ^18.3.1
 
+  react-icons@5.2.1:
+    resolution: {integrity: sha512-zdbW5GstTzXaVKvGSyTaBalt7HSfuK5ovrzlpyiWHAFXndXTdd/1hdDHI4xBM1Mn7YriT6aqESucFl9kEXzrdw==}
+    peerDependencies:
+      react: '*'
+
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
 
@@ -1131,6 +1156,9 @@ packages:
 
   text-table@0.2.0:
     resolution: {integrity: sha512-N+8UisAXDGk8PFXP4HAzVR9nbfmVJ3zYLAWiTIoqC5v5isinhr+r5uaO8+7r3BMfuNIufIsA7RdpVgacC2cSpw==}
+
+  tslib@2.6.3:
+    resolution: {integrity: sha512-xNvxJEOUiWPGhUuUdQgAJPKOOJfGnIyKySOc09XkKsgdUV/3E2zvwZYdejjmRgPCgcym1juLH3226yA7sEFJKQ==}
 
   type-check@0.4.0:
     resolution: {integrity: sha512-XleUoc9uwGXqjWwXaUTZAmzMcFZ5858QA2vvx1Ur5xIcixXIP+8LnFDgRplU30us6teqdlskFfu+ae4K79Ooew==}
@@ -1875,6 +1903,13 @@ snapshots:
     dependencies:
       is-callable: 1.2.7
 
+  framer-motion@11.3.22(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+    dependencies:
+      tslib: 2.6.3
+    optionalDependencies:
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+
   fs.realpath@1.0.0: {}
 
   fsevents@2.3.3:
@@ -2218,6 +2253,10 @@ snapshots:
       react: 18.3.1
       scheduler: 0.23.2
 
+  react-icons@5.2.1(react@18.3.1):
+    dependencies:
+      react: 18.3.1
+
   react-is@16.13.1: {}
 
   react-router-dom@6.26.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
@@ -2395,6 +2434,8 @@ snapshots:
   supports-preserve-symlinks-flag@1.0.0: {}
 
   text-table@0.2.0: {}
+
+  tslib@2.6.3: {}
 
   type-check@0.4.0:
     dependencies:
