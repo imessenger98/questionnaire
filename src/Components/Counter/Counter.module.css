@@ -1,0 +1,39 @@
+.timerContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.timerText {
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.timerFont {
+  font-family: "Arial", sans-serif;
+  font-size: 64px;
+}
+
+.questionCounter {
+  margin-top: 20px;
+  font-size: 18px;
+}
+
+/* Media queries for mobile devices */
+@media (max-width: 767px) {
+  .timerText {
+    font-size: 18px;
+  }
+
+  .timerFont {
+    font-size: 28px;
+  }
+
+  .questionCounter {
+    font-size: 14px;
+  }
+  .timerContainer {
+    padding: 5px;
+  }
+}
