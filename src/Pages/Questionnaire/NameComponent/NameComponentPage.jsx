@@ -2,24 +2,31 @@
  * Author MUHAMMED YAZEEN AN
  * Created on Fri Aug 09 2024
  */
-
 import { useState } from "react";
+import PropTypes from "prop-types";
 import Styles from "./UserNameInput.module.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setUserName } from "../../../redux/questionnaire/questionnaireSlice";
 
-const UserNameInput = () => {
+const UserNameInput = ({ setStep1Complete }) => {
   const [userNameLocal, setUserNameLocal] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const dispatch = useDispatch();
+  const { userName } = useSelector((state) => state?.questionnaire);
 
   const handleSaveName = () => {
-    if (userNameLocal) {
-      localStorage.setItem("userName", userNameLocal);
+    if (userNameLocal?.trim()) {
       dispatch(setUserName(userNameLocal));
+      setStep1Complete(true);
+      setErrorMessage("");
     } else {
-      localStorage.setItem("userName", "Anonymous");
-      dispatch(setUserName("Anonymous"));
+      setErrorMessage("Please enter a valid name.");
+      setTimeout(() => setErrorMessage(""), 2000);
     }
+  };
+
+  const handleOldUser = () => {
+    setStep1Complete(true);
   };
 
   return (
@@ -34,23 +41,27 @@ const UserNameInput = () => {
           className={Styles.nameInput}
         />
       </div>
-      <p className={Styles.description}>Enter your name for the leaderboard, or continue anonymously.</p>
+      {errorMessage && <p className={Styles.errorMessage}>{errorMessage}</p>}
+      <p className={Styles.description}>Enter your name for the leaderboard</p>
       <div className={Styles.buttonsContainer}>
         <button onClick={handleSaveName} className={Styles.startButton}>
           Save
         </button>
-        <button
-          onClick={() => {
-            setUserNameLocal("Anonymous");
-            handleSaveName();
-          }}
-          className={Styles.startButton}
-        >
-          Continue as Anonymous
-        </button>
+        {userName && (
+          <button
+            onClick={handleOldUser}
+            className={Styles.startButton}
+          >
+            {`Continue as ${userName}`}
+          </button>
+        )}
       </div>
     </div>
   );
+};
+
+UserNameInput.propTypes = {
+  setStep1Complete: PropTypes.func.isRequired,
 };
 
 export default UserNameInput;

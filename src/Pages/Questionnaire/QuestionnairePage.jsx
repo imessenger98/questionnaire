@@ -13,13 +13,12 @@ const QuestionnairePage = () => {
   const { questionTimerDuration, questions } = QUESTIONNAIRE_PAGE_CONFIG;
   const [questionNumber, setQuestionNumber] = useState(0);
   const [resetCounter, setResetCounter] = useState(0);
+  const [step1Complete, setStep1Complete] = useState(false);
 
   const totalQuestions = questions.length;
   const isLastQuestion = questionNumber === totalQuestions - 1;
   const navigate = useNavigate();
-  const { correctAnswersCount, userName = localStorage.getItem("userName") } = useSelector(
-    (state) => state?.questionnaire
-  );
+  const { correctAnswersCount } = useSelector((state) => state?.questionnaire);
 
   const timerComplete = () => {
     if (isLastQuestion) return navigate("/result");
@@ -37,8 +36,8 @@ const QuestionnairePage = () => {
 
   return (
     <>
-      {!userName ? (
-        <UserNameInput />
+      {!step1Complete ? (
+        <UserNameInput setStep1Complete={setStep1Complete} />
       ) : (
         <>
           <h2 className={Styles.text}>
