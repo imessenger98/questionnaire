@@ -1,7 +1,7 @@
 .buttonContainer {
   display: flex;
-  justify-content: center; /* Center the buttons horizontally */
-  gap: 10px; /* Space between buttons */
+  justify-content: center;
+  gap: 10px;
   margin-top: 20px;
 }
 
@@ -9,13 +9,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 5px; /* Adjusted padding */
+  padding: 5px;
   border: 2px solid white;
-  border-radius: 50px; /* Circular buttons */
+  border-radius: 50px;
   background-color: transparent;
   color: white;
   cursor: pointer;
-  font-size: 14px; /* Adjusted font size for icons */
+  font-size: 14px;
 }
 
 .button:hover {
@@ -24,28 +24,27 @@
 }
 
 .buttonIcon {
-  font-size: 14px; /* Icon size */
-  margin-right: 10px; /* No margin for single icon display */
+  font-size: 14px;
+  margin-right: 10px;
 }
 
 span {
   margin-right: 10px;
 }
 
-/* Responsive design */
 @media (max-width: 600px) {
   .button {
-    width: 40px; /* Smaller width for mobile */
-    height: 40px; /* Smaller height for mobile */
-    font-size: 18px; /* Smaller font size for mobile */
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
   }
 
   .buttonIcon {
-    font-size: 20px; /* Smaller icon size for mobile */
-    margin-right: 0px; /* No margin for single icon display */
+    font-size: 20px;
+    margin-right: 0px;
   }
 
   .button span {
-    display: none; /* Hide text on mobile */
+    display: none;
   }
 }

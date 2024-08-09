@@ -1,5 +1,5 @@
 export const QUESTIONNAIRE_PAGE_CONFIG = {
-  questionTimerDuration: 10,
+  questionTimerDuration: 5,
   questions: [
     {
       question: "What is the smallest prime number?",

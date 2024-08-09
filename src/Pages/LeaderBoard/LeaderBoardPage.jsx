@@ -27,7 +27,9 @@ const LeaderboardPage = () => {
         <MdLeaderboard className={Styles.leaderboardIcon} />
       </div>
       <h1 className={Styles.header}>Leaderboard</h1>
-      <p>Here are the top scores! Keep playing to climb the ranks and join the leaderboard!</p>
+      {leaderboard.length !== 0 && (
+        <p>Here are the top scores! Keep playing to climb the ranks and join the leaderboard!</p>
+      )}
       {leaderboard.length === 0 ? (
         <p className={Styles.emptyMessage}>No scores available yet. Start playing to appear on the leaderboard!</p>
       ) : (
@@ -46,9 +48,9 @@ const LeaderboardPage = () => {
               </div>
             ))}
           </div>
-          <NavigationButtons />
         </>
       )}
+      <NavigationButtons />
     </div>
   );
 };
