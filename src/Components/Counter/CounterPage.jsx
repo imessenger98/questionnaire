@@ -37,7 +37,7 @@ const Counter = ({
   }, [resetFlag, setResetCounter]);
 
   const size = isMobile ? 80 : 144;
-  const strokeWidth = isMobile ? 4 : 10;
+  const strokeWidth = isMobile ? 4 : 8;
 
   return (
     <div className={styles.timerContainer}>

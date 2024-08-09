@@ -1,6 +1,7 @@
 .question {
-  font-size: 24px;
+  font-size: 26px;
   margin-bottom: 20px;
+  font-family: "Proza Libre", sans-serif;
 }
 
 .optionsContainer {
@@ -22,6 +23,7 @@
   transition: background-color 0.3s ease, transform 0.2s ease;
   font-weight: 600;
   width: 200px;
+  margin: 2px 0;
 }
 
 /* Styles for correct and incorrect answers */
@@ -48,6 +50,9 @@
     flex-direction: column;
     gap: 0;
 
+  }
+  .question {
+    font-size: 18px;
   }
 }
 

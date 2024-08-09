@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { GiNextButton, GiConsoleController } from "react-icons/gi";
+import { GiNextButton } from "react-icons/gi";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from 'react-redux';
 
@@ -34,9 +34,8 @@ const QuestionnairePage = () => {
 
   return (
     <>
-      <GiConsoleController className={Styles.icon} />
       <h2 className={Styles.text}>
-        Score: {correctAnswersCount}/{totalQuestions}
+        Your Score: {correctAnswersCount}/{totalQuestions}
       </h2>
       <Counter
         duration={questionTimerDuration}

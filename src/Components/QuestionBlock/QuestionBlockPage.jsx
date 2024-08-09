@@ -1,53 +1,60 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
+import { motion } from "framer-motion";
+
 import { updateUserAnswer, incrementCorrectAnswers, resetState } from "../../redux/questionnaire/questionnaireSlice";
 import Styles from "./QuestionBlock.module.css";
 
-const QuestionBlockPage = ({ questions, questionNumber, isTimeOut = false }) => {
+const QuestionBlockPage = ({ questions, questionNumber }) => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [isCorrect, setIsCorrect] = useState(null);
   const dispatch = useDispatch();
-  const currentQuestion = questions[questionNumber];
+
+  const currentQuestion = useMemo(() => questions[questionNumber], [questions, questionNumber]);
 
   useEffect(() => {
     dispatch(resetState());
   }, [dispatch]);
 
-  // Reset state when questionNumber changes
   useEffect(() => {
     setSelectedOption(null);
     setIsCorrect(null);
   }, [questionNumber]);
 
-  const handleOptionClick = (option) => {
-    const correct = option === currentQuestion.correctAnswer;
-    setSelectedOption(option);
-    setIsCorrect(correct);
-    // Update the question with the user's selected answer
-    dispatch(
-      updateUserAnswer({
-        questionIndex: questionNumber,
-        updatedQuestion: {
-          ...currentQuestion,
-          userAnswer: option,
-        },
-      })
-    );
-    if (correct) {
-      dispatch(incrementCorrectAnswers());
-    }
-  };
+  const handleOptionClick = useCallback(
+    (option) => {
+      const correct = option === currentQuestion.correctAnswer;
+      setSelectedOption(option);
+      setIsCorrect(correct);
 
-  const getButtonClass = (option) => {
-    if (option === selectedOption) {
-      return isCorrect ? Styles.correct : Styles.incorrect;
-    }
-    if (selectedOption !== null && option === currentQuestion.correctAnswer) {
-      return Styles.correct; // Highlight correct option if the user was wrong
-    }
-    if (isTimeOut && option === currentQuestion.correctAnswer) return Styles.correct; // Highlight correct option
-  };
+      dispatch(
+        updateUserAnswer({
+          questionIndex: questionNumber,
+          updatedQuestion: {
+            ...currentQuestion,
+            userAnswer: option,
+          },
+        })
+      );
+
+      if (correct) {
+        dispatch(incrementCorrectAnswers());
+      }
+    },
+    [currentQuestion, dispatch, questionNumber]
+  );
+
+  const getButtonClass = useCallback(
+    (option) => {
+      if (selectedOption === null) return "";
+      if (option === currentQuestion.correctAnswer || (option === selectedOption && isCorrect)) {
+        return Styles.correct;
+      }
+      return option === selectedOption ? Styles.incorrect : "";
+    },
+    [selectedOption, isCorrect, currentQuestion.correctAnswer]
+  );
 
   return (
     <>
@@ -56,14 +63,19 @@ const QuestionBlockPage = ({ questions, questionNumber, isTimeOut = false }) => 
       </h2>
       <div className={Styles.optionsContainer}>
         {currentQuestion?.options.map((option, index) => (
-          <button
+          <motion.button
             key={`${option}-${index}`}
             className={`${Styles.optionButton} ${getButtonClass(option)}`}
             onClick={() => handleOptionClick(option)}
             disabled={selectedOption !== null}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, delay: index * 0.1 }}
           >
             {option}
-          </button>
+          </motion.button>
         ))}
       </div>
     </>
@@ -79,7 +91,6 @@ QuestionBlockPage.propTypes = {
     })
   ).isRequired,
   questionNumber: PropTypes.number.isRequired,
-  isTimeOut: PropTypes.bool,
 };
 
 export default QuestionBlockPage;
