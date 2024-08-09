@@ -68,7 +68,7 @@ const QuestionBlockPage = ({ questions, questionNumber }) => {
             className={`${Styles.optionButton} ${getButtonClass(option)}`}
             onClick={() => handleOptionClick(option)}
             disabled={selectedOption !== null}
-            whileHover={{ scale: 1.1 }}
+            whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

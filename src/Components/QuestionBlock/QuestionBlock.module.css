@@ -28,15 +28,15 @@
 
 /* Styles for correct and incorrect answers */
 .correct {
-  background-color: lightgreen;
+  background-color: rgba(0, 255, 0, 0.63);
   color: black;
-  border-color: green;
+  border-color: rgb(255, 255, 255);
 }
 
 .incorrect {
   background-color: lightcoral;
   color: black;
-  border-color: red;
+  border-color: rgb(255, 255, 255);
 }
 
 /* Adjust width for mobile */
@@ -54,8 +54,4 @@
   .question {
     font-size: 18px;
   }
-}
-
-.optionButton:hover {
-  transform: scale(1.05);
 }

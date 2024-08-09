@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   questions: [],
   correctAnswersCount: 0,
+  userName: "",
 };
 
 const questionnaireSlice = createSlice({
@@ -20,8 +21,11 @@ const questionnaireSlice = createSlice({
       state.questions = initialState.questions;
       state.correctAnswersCount = initialState.correctAnswersCount;
     },
+    setUserName: (state, action) => {
+      state.userName = action.payload;
+    },
   },
 });
 
-export const { setQuestions, updateUserAnswer, incrementCorrectAnswers, resetState } = questionnaireSlice.actions;
+export const { setQuestions, updateUserAnswer, incrementCorrectAnswers, resetState, setUserName } = questionnaireSlice.actions;
 export default questionnaireSlice.reducer;

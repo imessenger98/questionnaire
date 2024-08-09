@@ -67,7 +67,7 @@ Counter.propTypes = {
   duration: PropTypes.number.isRequired,
   colors: PropTypes.string,
   trailColor: PropTypes.string,
-  resetFlag: PropTypes.bool,
+  resetFlag: PropTypes.any,
 };
 
 export default Counter;

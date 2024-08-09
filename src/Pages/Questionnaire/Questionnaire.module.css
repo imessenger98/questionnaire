@@ -30,11 +30,6 @@
     color: black;
     transform: scale(1.05);
   }
-  
-  .nextIcon {
-    margin-left: 8px;
-  }
-  
 
 /* Media queries for mobile devices */
 @media (max-width: 767px) {

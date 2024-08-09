@@ -10,7 +10,7 @@
   align-items: center;
   justify-content: center;
   padding: 5px; /* Adjusted padding */
-  border: solid #fff;
+  border: 2px solid white;
   border-radius: 50px; /* Circular buttons */
   background-color: transparent;
   color: white;
